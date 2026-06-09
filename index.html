@@ -1272,6 +1272,14 @@ function doLogin(){
     err.textContent='IDまたはパスワードが正しくありません';
   }
 }
+function doLogout(){
+  if(!confirm('ログアウトしますか？'))return;
+  document.getElementById('loginId').value='';
+  document.getElementById('loginPw').value='';
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginScreen').classList.remove('hidden');
+  switchTab('today');
+}
 function saveAuthInfo(){
   const id=document.getElementById('authIdIn').value.trim();
   const pw=document.getElementById('authPwIn').value;
