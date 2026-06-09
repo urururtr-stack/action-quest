@@ -1253,7 +1253,7 @@ body::before{
 const AUTH_KEY='nse-auth';
 function getAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null');}catch{return null;}}
 function saveAuth(id,pw){localStorage.setItem(AUTH_KEY,JSON.stringify({id,pw}));}
-function doLogin(){
+function doLogin(stayLoggedIn=false){
   const id=document.getElementById('loginId').value.trim();
   const pw=document.getElementById('loginPw').value;
   const err=document.getElementById('loginErr');
@@ -1261,12 +1261,14 @@ function doLogin(){
   if(!auth){
     if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
     saveAuth(id,pw);
+    if(stayLoggedIn)localStorage.setItem('nse-stay','1');
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('loginNote').textContent='';
     err.textContent='';
     return;
   }
   if(id===auth.id&&pw===auth.pw){
+    if(stayLoggedIn)localStorage.setItem('nse-stay','1');
     document.getElementById('loginScreen').classList.add('hidden');
     err.textContent='';
   }else{
