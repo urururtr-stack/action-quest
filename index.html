@@ -1646,13 +1646,15 @@ function renderLicense(){
     let progCard='';
     if(prog&&nxtLc){
       const allOk=prog.every(c=>c.ok);
-      progCard=`<div class="lc-progress-card"${allOk?' style="border-color:rgba(201,168,76,.5)"':''}>
-        <div class="lc-prog-title">${cur} → ${nxtLc} 昇格条件${allOk?'<span style="color:#00D4AA;margin-left:8px">✦ 達成！</span>':''}</div>
-        ${prog.map(c=>`<div class="lc-cond-row">
-          <div class="lc-cond-icon">${c.ok?'✅':'⬜'}</div>
-          <div class="lc-cond-text${c.ok?' ok':''}">${c.t}</div>
-          <div class="lc-cond-val${c.ok?' ok':''}">${c.cur.toLocaleString()} / ${c.need.toLocaleString()} ${c.u}</div>
+      progCard=`<div class="lc-progress-card">
+        <div class="lc-prog-title">${cur} → ${nxtLc}${allOk?' ✦':''}</div>
+        <div class="lc-cond-chips">
+        ${prog.map(c=>`<div class="lc-cond-chip${c.ok?' ok':''}">
+          <span class="lc-cond-chip-icon">${c.ok?'✅':'⬜'}</span>
+          <span class="lc-cond-chip-txt">${c.t}</span>
+          <span class="lc-cond-chip-val">${c.cur.toLocaleString()}/${c.need.toLocaleString()}${c.u}</span>
         </div>`).join('')}
+        </div>
       </div>`;
     }else if(!nxtLc){
       progCard=`<div class="lc-progress-card" style="text-align:center;padding:12px;border-color:rgba(201,168,76,.5)"><div style="color:var(--gold);letter-spacing:2px">🔱 最高ランク達成</div></div>`;
