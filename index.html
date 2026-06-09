@@ -1217,6 +1217,47 @@ body::before{
 
 <script>
 /* ── Constants ── */
+/* ── Auth ── */
+const AUTH_KEY='nse-auth';
+function getAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null');}catch{return null;}}
+function saveAuth(id,pw){localStorage.setItem(AUTH_KEY,JSON.stringify({id,pw}));}
+function doLogin(){
+  const id=document.getElementById('loginId').value.trim();
+  const pw=document.getElementById('loginPw').value;
+  const err=document.getElementById('loginErr');
+  const auth=getAuth();
+  if(!auth){
+    if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
+    saveAuth(id,pw);
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('loginNote').textContent='';
+    err.textContent='';
+    return;
+  }
+  if(id===auth.id&&pw===auth.pw){
+    document.getElementById('loginScreen').classList.add('hidden');
+    err.textContent='';
+  }else{
+    err.textContent='IDまたはパスワードが正しくありません';
+  }
+}
+function saveAuthInfo(){
+  const id=document.getElementById('authIdIn').value.trim();
+  const pw=document.getElementById('authPwIn').value;
+  if(!id||!pw){showToast('IDとパスワードを入力してください');return;}
+  saveAuth(id,pw);
+  document.getElementById('authPwIn').value='';
+  showToast('ログイン情報を保存しました');
+}
+function initLogin(){
+  const screen=document.getElementById('loginScreen');
+  const auth=getAuth();
+  if(!auth){
+    document.getElementById('loginNote').textContent='初回：IDとパスワードを設定してログインしてください';
+  }
+  screen.classList.remove('hidden');
+}
+
 const SK = 'aq-v1';
 const LT = [
   {lv:1, xp:0,     title:'新人'},
