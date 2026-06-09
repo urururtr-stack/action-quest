@@ -1274,14 +1274,14 @@ function doLogin(){
   if(!auth){
     if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
     saveAuth(id,pw);
-    if(stayLoggedIn)localStorage.setItem('nse-stay','1');
+    localStorage.setItem('nse-stay','1');
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('loginNote').textContent='';
     err.textContent='';
     return;
   }
   if(id===auth.id&&pw===auth.pw){
-    if(stayLoggedIn)localStorage.setItem('nse-stay','1');
+    localStorage.setItem('nse-stay','1');
     document.getElementById('loginScreen').classList.add('hidden');
     err.textContent='';
   }else{
