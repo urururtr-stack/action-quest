@@ -828,6 +828,29 @@ body::before{
     <div class="login-err" id="loginErr"></div>
     <div class="login-setup-note" id="loginNote"></div>
   </div>
+
+  <!-- 新規作成フォーム -->
+  <div id="registerBox" style="width:100%;max-width:340px;margin-top:12px;display:none">
+    <div class="login-box" style="border-color:rgba(201,168,76,.3)">
+      <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px">新規アカウント作成</div>
+      <div class="login-field">
+        <div class="login-lbl">ログインID</div>
+        <input class="login-in" id="regId" type="text" placeholder="IDを設定" autocomplete="off">
+      </div>
+      <div class="login-field">
+        <div class="login-lbl">パスワード</div>
+        <input class="login-in" id="regPw" type="password" placeholder="パスワードを設定" autocomplete="off">
+      </div>
+      <div class="login-field">
+        <div class="login-lbl">パスワード（確認）</div>
+        <input class="login-in" id="regPw2" type="password" placeholder="もう一度入力" autocomplete="off" onkeydown="if(event.key==='Enter')doRegister()">
+      </div>
+      <button class="login-btn" onclick="doRegister()">アカウントを作成</button>
+      <div class="login-err" id="regErr"></div>
+    </div>
+  </div>
+
+  <button onclick="toggleRegister()" style="margin-top:16px;background:none;border:none;color:var(--t3);font-size:11px;letter-spacing:2px;cursor:pointer;font-family:inherit;text-decoration:underline" id="registerToggleBtn">新規作成</button>
 </div>
 
 <!-- ── Player Header ── -->
