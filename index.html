@@ -825,8 +825,11 @@ body::before{
       <div class="login-lbl">パスワード</div>
       <input class="login-in" id="loginPw" type="password" placeholder="パスワードを入力" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
+    <label style="display:flex;align-items:center;gap:8px;margin-bottom:12px;cursor:pointer;user-select:none">
+      <input type="checkbox" id="stayCheck" style="width:16px;height:16px;accent-color:var(--gold);cursor:pointer">
+      <span style="font-size:11px;color:var(--t2);letter-spacing:1px">ログイン情報を保存</span>
+    </label>
     <button class="login-btn" onclick="doLogin()">ログイン</button>
-    <button class="login-btn" onclick="doLogin(true)" style="margin-top:8px;background:transparent;border:1px solid var(--gb2);color:var(--gold);">常にログイン</button>
     <div class="login-err" id="loginErr"></div>
     <div style="margin-top:12px;border-top:1px solid var(--gb);padding-top:12px;">
       <button onclick="toggleRegister()" id="registerToggleBtn"
