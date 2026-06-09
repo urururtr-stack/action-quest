@@ -1313,6 +1313,9 @@ function doRegister(){
 function initLogin(){
   const screen=document.getElementById('loginScreen');
   const auth=getAuth();
+  if(auth&&localStorage.getItem('nse-stay')==='1'){
+    screen.classList.add('hidden');return;
+  }
   if(!auth){
     document.getElementById('loginNote').textContent='ログインIDとパスワードを入力してください';
   }
