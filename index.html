@@ -2424,6 +2424,9 @@ function updateMgPreview(input,aid){
 /* ── Settings ── */
 function renderSettings(){
   document.getElementById('nameIn').value=D.name;
+  const auth=getAuth();
+  const idIn=document.getElementById('authIdIn');
+  if(idIn&&auth)idIn.value=auth.id;
   const el=document.getElementById('setList');
   if(!D.actions.length){el.innerHTML='';return;}
   el.innerHTML=`<div class="set-card" id="setCard">
