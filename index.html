@@ -1272,11 +1272,30 @@ function saveAuthInfo(){
   document.getElementById('authPwIn').value='';
   showToast('ログイン情報を保存しました');
 }
+function toggleRegister(){
+  const box=document.getElementById('registerBox');
+  const btn=document.getElementById('registerToggleBtn');
+  const show=box.style.display==='none';
+  box.style.display=show?'':'none';
+  btn.textContent=show?'キャンセル':'新規作成';
+  document.getElementById('regErr').textContent='';
+}
+function doRegister(){
+  const id=document.getElementById('regId').value.trim();
+  const pw=document.getElementById('regPw').value;
+  const pw2=document.getElementById('regPw2').value;
+  const err=document.getElementById('regErr');
+  if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
+  if(pw!==pw2){err.textContent='パスワードが一致しません';return;}
+  saveAuth(id,pw);
+  document.getElementById('loginScreen').classList.add('hidden');
+  err.textContent='';
+}
 function initLogin(){
   const screen=document.getElementById('loginScreen');
   const auth=getAuth();
   if(!auth){
-    document.getElementById('loginNote').textContent='初回：IDとパスワードを設定してログインしてください';
+    document.getElementById('loginNote').textContent='ログインIDとパスワードを入力してください';
   }
   screen.classList.remove('hidden');
 }
