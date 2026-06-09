@@ -1277,6 +1277,7 @@ function doLogin(stayLoggedIn=false){
 }
 function doLogout(){
   if(!confirm('ログアウトしますか？'))return;
+  localStorage.removeItem('nse-stay');
   document.getElementById('loginId').value='';
   document.getElementById('loginPw').value='';
   document.getElementById('loginErr').textContent='';
