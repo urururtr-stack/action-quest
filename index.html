@@ -1259,7 +1259,6 @@ function saveAuth(id,pw){localStorage.setItem(AUTH_KEY,JSON.stringify({id,pw}));
 function doLogin(){
   const stayLoggedIn=document.getElementById('stayCheck')?.checked||false;
   const id=document.getElementById('loginId').value.trim();
-
   const pw=document.getElementById('loginPw').value;
   const err=document.getElementById('loginErr');
   const auth=getAuth();
