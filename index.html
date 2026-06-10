@@ -1329,7 +1329,7 @@ function doRegister(){
   if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
   if(pw!==pw2){err.textContent='パスワードが一致しません';return;}
   saveAuth(id,pw);
-  document.getElementById('loginScreen').classList.add('hidden');
+  applyLogin(id);
   err.textContent='';
 }
 function initLogin(){
