@@ -1266,6 +1266,16 @@ body::before{
 const AUTH_KEY='nse-auth';
 function getAuth(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'null');}catch{return null;}}
 function saveAuth(id,pw){localStorage.setItem(AUTH_KEY,JSON.stringify({id,pw}));}
+function applyLogin(id){
+  SK=getSK(id);
+  localStorage.setItem('nse-stay','1');
+  localStorage.setItem('nse-user',id);
+  Object.assign(D,{name:'プレイヤー',actions:[...DEF_ACTIONS],records:{},totalXP:0,streak:0,lastActive:null,licenseDeadline:null,frontActionId:null,licenseThresholds:[...DEFAULT_LC_THR],orgMembers:[],gsvPersonal:0,gsvTeam:0});
+  load();
+  D.totalXP=calcTotalXP();
+  renderAll();
+  document.getElementById('loginScreen').classList.add('hidden');
+}
 function doLogin(){
   const id=document.getElementById('loginId').value.trim();
   const pw=document.getElementById('loginPw').value;
@@ -1274,15 +1284,13 @@ function doLogin(){
   if(!auth){
     if(!id||!pw){err.textContent='IDとパスワードを入力してください';return;}
     saveAuth(id,pw);
-    localStorage.setItem('nse-stay','1');
-    document.getElementById('loginScreen').classList.add('hidden');
+    applyLogin(id);
     document.getElementById('loginNote').textContent='';
     err.textContent='';
     return;
   }
   if(id===auth.id&&pw===auth.pw){
-    localStorage.setItem('nse-stay','1');
-    document.getElementById('loginScreen').classList.add('hidden');
+    applyLogin(id);
     err.textContent='';
   }else{
     err.textContent='IDまたはパスワードが正しくありません';
