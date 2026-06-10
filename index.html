@@ -1335,7 +1335,9 @@ function doRegister(){
 function initLogin(){
   const screen=document.getElementById('loginScreen');
   const auth=getAuth();
-  if(auth&&localStorage.getItem('nse-stay')==='1'){
+  const savedUser=localStorage.getItem('nse-user');
+  if(auth&&localStorage.getItem('nse-stay')==='1'&&savedUser){
+    SK=getSK(savedUser);
     screen.classList.add('hidden');return;
   }
   if(!auth){
