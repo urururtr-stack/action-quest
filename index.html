@@ -1336,7 +1336,9 @@ function initLogin(){
   screen.classList.remove('hidden');
 }
 
-const SK = 'aq-v1';
+const SK_BASE = 'aq-v1';
+let SK = SK_BASE;
+function getSK(userId){ return userId ? SK_BASE+'-'+userId : SK_BASE; }
 const LT = [
   {lv:1, xp:0,     title:'新人'},
   {lv:2, xp:500,   title:'見習い'},
