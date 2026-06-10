@@ -1299,6 +1299,8 @@ function doLogin(){
 function doLogout(){
   if(!confirm('ログアウトしますか？'))return;
   localStorage.removeItem('nse-stay');
+  localStorage.removeItem('nse-user');
+  SK=SK_BASE;
   document.getElementById('loginId').value='';
   document.getElementById('loginPw').value='';
   document.getElementById('loginErr').textContent='';
